@@ -187,6 +187,14 @@ public:
         return dynalo::get_function<FunctionSignature>(m_handle, func_name);
     }
 
+    /// Returns a pointer to the @p func_name function using dynalo::get_function
+    /// Pointer is null if not found.
+    template <typename FunctionSignature>
+    FunctionSignature* try_get_function(const std::string& func_name)
+    {
+        return dynalo::try_get_function<FunctionSignature>(m_handle, func_name);
+    }
+
     /// Returns the native handle of the loaded shared library
     native::handle get_native_handle()
     {
