@@ -117,6 +117,23 @@ FunctionSignature* get_function(native::handle lib_handle, const std::string& fu
     return detail::get_function<FunctionSignature>(lib_handle, func_name);
 }
 
+/// Looks up a function in the shared library and returns pointer to it
+///
+/// @tparam FunctionSignature The signature of the function to be looked up.
+///                           i.e. `return_type(param_types...)`
+///                           e.g. `void(const char*)`, `bool(int, int)`
+///
+/// @param lib_handle The handle of the library that contains the function
+/// @param func_name  The name of the function to find
+///
+/// @return A pointer to the @p func_name function. Null if not found.
+template <typename FunctionSignature>
+inline
+FunctionSignature* try_get_function(native::handle lib_handle, const std::string& func_name)
+{
+    return detail::try_get_function<FunctionSignature>(lib_handle, func_name);
+}
+
 
 /// A shared library
 ///

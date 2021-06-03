@@ -84,6 +84,15 @@ void close(native::handle lib_handle)
 
 template <typename FunctionSignature>
 inline
+FunctionSignature* try_get_function(native::handle lib_handle, const std::string& func_name)
+{
+    FARPROC func_ptr = ::GetProcAddress(lib_handle, func_name.c_str());
+
+    return reinterpret_cast<FunctionSignature*>(func_ptr);
+}
+
+template <typename FunctionSignature>
+inline
 FunctionSignature* get_function(native::handle lib_handle, const std::string& func_name)
 {
     FARPROC func_ptr = ::GetProcAddress(lib_handle, func_name.c_str());
